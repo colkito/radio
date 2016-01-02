@@ -1,0 +1,45 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.player {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #EF6C00;
+  color: #fff;
+}
+
+.player .container {
+  line-height: 60px;
+  font-size: 3em;
+}
+
+.player a {
+  color: #fff;
+}
+
+.btn-repro {
+  display: block;
+  height: 60px;
+  text-align: center;
+  width: 60px;
+}
+
+/* Repro */
+.btn-pause,
+.btn-volume-off {
+  display: none;
+}
+
+.btn-volume-off {
+  padding-left: 10px;
+  text-align: left;
+}
