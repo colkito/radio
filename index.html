@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://radio02.ferozo.com/theme/widget_recenttracks.css" />
   <link rel="stylesheet" href="css/styles.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -21,39 +22,21 @@
   </head>
   <body>
     <div class="container">
-      <h3 class="text-center">Noctámbulos en Tucumán</h3>
+      <h4 class="text-center header">
+        <i class="fa fa-refresh fa-spin text-info radio-loading"></i>
+        <i class="fa fa-microphone radio-status radio-on flash animated infinite"></i>
+        <i class="fa fa-microphone-slash radio-status radio-off"></i>
+        Noctámbulos en Tucumán
+      </h4>
 
-      <hr>
-
-      <ul class="list-group">
-        <li class="list-group-item">
-          <span class="pull-right">
-            <a href="https://radio02.ferozo.com/tunein.php/ra02000762/tunein.pls" id="cc_stream_info_song">Cargando ...</a>
-          </span>
-          Canción actual
-        </li>
-        <li class="list-group-item">
-          <span class="badge">
-            <span id="cc_stream_info_bitrate"></span> Kbps
-          </span>
-          Tasa de bits
-        </li>
-        <li class="list-group-item">
-          <span class="badge">
-            <span id="cc_stream_info_server"></span>
-          </span>
-          Estado del servidor
-        </li>
-        <li class="list-group-item">
-          <span class="badge">
-            <span id="cc_stream_info_source"></span>
-          </span>
-          Estado de la Fuente
-        </li>
-      </ul>
-
-      <script src="https://radio02.ferozo.com/system/streaminfo.js"></script>
-      <script src="https://radio02.ferozo.com/js.php/ra02000762/streaminfo/rnd0"></script>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Últimas canciones</h3>
+        </div>
+        <div id="last-songs" class="panel-body">
+          <p class="text-center">Cargando...</p>
+        </div>
+      </div>
     </div>
 
     <footer class="player">
@@ -79,7 +62,6 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

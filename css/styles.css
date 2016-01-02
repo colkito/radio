@@ -1,25 +1,122 @@
+/* Animate.css */
+.animated {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* Flash */
+@-webkit-keyframes flash {
+  from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.flash {
+  -webkit-animation-name: flash;
+  animation-name: flash;
+}
+
 html {
   position: relative;
   min-height: 100%;
+  background: url(https://scontent-gru2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/10345999_10208225678581572_4740718037221102315_n.jpg?oh=70525c232353961e29374b357d4b72af&oe=571B2CBF) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
   margin-bottom: 60px;
+  background: none;
 }
 
-.player {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #EF6C00;
+.header {
   color: #fff;
 }
 
+.radio-status {
+  display: none;
+}
+
+.radio-off {
+  color: #e74c3c;
+}
+
+.radio-on {
+  color: #8BC34A;
+}
+
+#last-songs p {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+#last-songs p:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.player {
+  bottom: 0;
+  color: #fff;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+}
+
+.player-2c3e50 {
+  background-color: #2c3e50;
+}
+
+.player-8e44ad {
+  background-color: #8e44ad;
+}
+
+.player-2980b9 {
+  background-color: #2980b9;
+}
+
+.player-27ae60 {
+  background-color: #27ae60;
+}
+
+.player-16a085 {
+  background-color: #16a085;
+}
+
+.player-e74c3c {
+  background-color: #e74c3c;
+}
+
+.player-e67e22 {
+  background-color: #e67e22;
+}
+
 .player .container {
-  line-height: 60px;
   font-size: 3em;
+  line-height: 60px;
 }
 
 .player a {
@@ -33,6 +130,15 @@ body {
   width: 60px;
 }
 
+.btn-repro.disabled {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=45);
+  opacity: .45;
+  pointer-events: none;
+}
+
 /* Repro */
 .btn-pause,
 .btn-volume-off {
@@ -40,6 +146,6 @@ body {
 }
 
 .btn-volume-off {
-  padding-left: 10px;
+  padding-left: 11px;
   text-align: left;
 }
