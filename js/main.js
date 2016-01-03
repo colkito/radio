@@ -71,9 +71,9 @@ $(document).on('ready', function () {
   _getRadioInfo();
   _getLastSongsData();
 
-  var audio = new Audio(),
-      iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
-      displayBlock = { display: 'block' };
+  var iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent ),
+      displayBlock = { display: 'block' },
+      audio;
 
   // Hide Volume controls for iOS
   if (iOS) $('#volume').hide();
@@ -88,7 +88,7 @@ $(document).on('ready', function () {
 
     // Play/Pause
     if ($this.hasClass('btn-play')) {
-      audio.src = 'http://200.58.106.247:8550/;&type=mp3';
+      audio = new Audio('http://200.58.106.247:8550/;&type=mp3');
       audio.play();
 
       $this.hide();
@@ -97,8 +97,7 @@ $(document).on('ready', function () {
 
     if ($this.hasClass('btn-pause')) {
       audio.pause();
-      audio.currentTime = 0;
-      audio.src = '';
+      audio = null;
 
       $this.hide();
       $('.btn-play').css(displayBlock);
