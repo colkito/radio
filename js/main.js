@@ -9,6 +9,7 @@ $(document).on('ready', function () {
       colors = ['2c3e50', '8e44ad', '2980b9', '27ae60', '16a085', 'e74c3c', 'e67e22'],
       randomColor = colors[Math.floor((Math.random() * 6) + 1)],
       songTitle = '',
+      lastSongTitle = '',
       $btnRepro = $('.btn-repro'),
       $infoList = $('.info-list'),
       $nowPlaying = $('#now-playing');
@@ -17,6 +18,24 @@ $(document).on('ready', function () {
   var $radioLoading = $('.radio-loading'),
       $radioOn = $('.radio-on'),
       $radioOff = $('.radio-off');
+
+  var _clearMarquee = function () {
+    $nowPlaying
+      .empty()
+      .marquee('destroy');
+  };
+
+  var _setMarquee = function () {
+    if (songTitle !== lastSongTitle) {
+      lastSongTitle = songTitle;
+
+      _clearMarquee();
+
+      $nowPlaying
+        .text(songTitle)
+        .marquee();
+    }
+  };
 
   var _getRadioInfo = function () {
     $.getScript('https://radio02.ferozo.com/js.php/ra02000762/streaminfo/rnd0');
@@ -48,15 +67,14 @@ $(document).on('ready', function () {
       }
     }
 
-    if (info.song) {
+    // Set maerquee
+    if (info.song !== '') {
       songTitle = info.song;
 
-      if (playing) {
-        $nowPlaying
-          .marquee('destroy')
-          .text(songTitle)
-          .marquee();
-      }
+      $nowPlaying
+        .bind('finished', function () {
+          _setMarquee();
+        });
     }
 
     if (info.server === 'Activo') {
@@ -78,7 +96,7 @@ $(document).on('ready', function () {
 
   setInterval(function () {
     _getRadioInfo();
-  }, 60000);
+  }, 30000);
 
   // recent-tracks
   var $lastSongs = $('#last-songs');
@@ -134,9 +152,7 @@ $(document).on('ready', function () {
       $this.hide();
       $('.btn-pause').css(displayBlock);
 
-      $nowPlaying
-        .text(songTitle)
-        .marquee();
+      _setMarquee();
     }
 
     if ($this.hasClass('btn-pause')) {
@@ -148,9 +164,7 @@ $(document).on('ready', function () {
       $this.hide();
       $('.btn-play').css(displayBlock);
 
-      $nowPlaying
-        .empty()
-        .marquee('destroy');
+      _clearMarquee();
     }
 
     // Mute/VolumeUp
