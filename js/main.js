@@ -5,9 +5,13 @@ $(document).on('ready', function () {
 
   // Init vars
   var serverOn = false,
+      playing = false,
       colors = ['2c3e50', '8e44ad', '2980b9', '27ae60', '16a085', 'e74c3c', 'e67e22'],
       randomColor = colors[Math.floor((Math.random() * 6) + 1)],
-      $btnRepro = $('.btn-repro');
+      songTitle = '',
+      $btnRepro = $('.btn-repro'),
+      $infoList = $('.info-list'),
+      $nowPlaying = $('#now-playing');
 
   // radio-info
   var $radioLoading = $('.radio-loading'),
@@ -20,6 +24,40 @@ $(document).on('ready', function () {
 
   cc_streaminfo_get_callback = function (info) {
     $radioLoading.hide();
+
+    if (info.title !== '') {
+      var data;
+
+      try {
+        data = JSON.parse(info.title);
+        $infoList.empty();
+
+        if (data.msg) {
+          var msg = '<li class="list-group-item">' + data.msg + '</li>';
+          $infoList.append(msg);
+        }
+
+        if (data.link) {
+          var link = '<li class="list-group-item"><a href="' + data.link + '">' + data.link + '</a></li>';
+          $infoList.append(link);
+        }
+
+        $infoList.show();
+      } catch (e) {
+        console.log('>>> Error parsing title');
+      }
+    }
+
+    if (info.song) {
+      songTitle = info.song;
+
+      if (playing) {
+        $nowPlaying
+          .marquee('destroy')
+          .text(songTitle)
+          .marquee();
+      }
+    }
 
     if (info.server === 'Activo') {
       serverOn = true;
@@ -88,19 +126,31 @@ $(document).on('ready', function () {
 
     // Play/Pause
     if ($this.hasClass('btn-play')) {
+      playing = true;
+
       audio = new Audio('http://200.58.106.247:8550/;&type=mp3');
       audio.play();
 
       $this.hide();
       $('.btn-pause').css(displayBlock);
+
+      $nowPlaying
+        .text(songTitle)
+        .marquee();
     }
 
     if ($this.hasClass('btn-pause')) {
+      playing = false;
+
       audio.pause();
       audio = null;
 
       $this.hide();
       $('.btn-play').css(displayBlock);
+
+      $nowPlaying
+        .empty()
+        .marquee('destroy');
     }
 
     // Mute/VolumeUp

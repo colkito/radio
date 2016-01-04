@@ -69,6 +69,12 @@ body {
   color: #8BC34A;
 }
 
+/* Info list */
+.info-list {
+  display: none;
+}
+
+/* Last song */
 #last-songs p {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
@@ -79,12 +85,17 @@ body {
   padding-bottom: 0;
 }
 
+/* Player */
 .player {
   bottom: 0;
   color: #fff;
   height: 60px;
   position: fixed;
   width: 100%;
+}
+
+.player .repo-group {
+  z-index: 999999999;
 }
 
 .player-2c3e50 {
@@ -122,6 +133,11 @@ body {
 
 .player a {
   color: #fff;
+}
+
+#now-playing {
+  font-size: 20px;
+  overflow: hidden;
 }
 
 .btn-repro {
