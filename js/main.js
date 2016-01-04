@@ -63,7 +63,8 @@ $(document).on('ready', function () {
         $infoList.empty();
 
         if (data.msg) {
-          var msg = '<li class="list-group-item">' + data.msg + '</li>';
+          var msgHashtag = data.msg.replace(/#(\w+)/g, '<a href="https://twitter.com/hashtag/$1" target="_blank">#$1</a>');
+          var msg = '<li class="list-group-item">' + msgHashtag + '</li>';
           $infoList.append(msg);
         }
 
