@@ -92,6 +92,12 @@ body {
   height: 60px;
   position: fixed;
   width: 100%;
+
+  -webkit-transition: background-color .4s ease-in;
+  -moz-transition: background-color .4s ease-in;
+  -o-transition: background-color .4s ease-in;
+  -ms-transition: background-color .4s ease-in;
+  transition: background-color .4s ease-in;
 }
 
 .player .repo-group {

@@ -7,7 +7,7 @@ $(document).on('ready', function () {
   var serverOn = false,
       playing = false,
       colors = ['2c3e50', '8e44ad', '2980b9', '27ae60', '16a085', 'e74c3c', 'e67e22'],
-      randomColor = colors[Math.floor((Math.random() * 6) + 1)],
+      lastColor = '',
       songTitle = '',
       lastSongTitle = '',
       $btnRepro = $('.btn-repro'),
@@ -18,6 +18,16 @@ $(document).on('ready', function () {
   var $radioLoading = $('.radio-loading'),
       $radioOn = $('.radio-on'),
       $radioOff = $('.radio-off');
+
+  var _setReproColor = function () {
+    var randomColor = colors[Math.floor((Math.random() * 6) + 1)];
+
+    $('.player')
+      .removeClass('player-' + lastColor)
+      .addClass('player-' + randomColor);
+
+    lastColor = randomColor;
+  };
 
   var _clearMarquee = function () {
     $nowPlaying
@@ -30,6 +40,7 @@ $(document).on('ready', function () {
       lastSongTitle = songTitle;
 
       _clearMarquee();
+      _setReproColor();
 
       $nowPlaying
         .text(songTitle)
@@ -122,8 +133,7 @@ $(document).on('ready', function () {
   }, 60000);
 
   // Init
-  $('.player').addClass('player-' + randomColor);
-
+  _setReproColor();
   _getRadioInfo();
   _getLastSongsData();
 
@@ -157,6 +167,7 @@ $(document).on('ready', function () {
 
     if ($this.hasClass('btn-pause')) {
       playing = false;
+      lastSongTitle = '';
 
       audio.pause();
       audio = null;
