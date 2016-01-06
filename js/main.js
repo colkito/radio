@@ -63,9 +63,11 @@ $(document).on('ready', function () {
         $infoList.empty();
 
         if (data.msg) {
-          var msgHashtag = data.msg.replace(/#(\w+)/g, '<a href="https://twitter.com/hashtag/$1" target="_blank">#$1</a>');
-          var msg = '<li class="list-group-item">' + msgHashtag + '</li>';
-          $infoList.append(msg);
+          var msgHashtag = data.msg.replace(/#(\w+)/g, '<a href="https://twitter.com/hashtag/$1" title="#$1 en Twitter" target="_blank">#$1</a>');
+          var msgHtml = '<li id="radio-msg" class="list-group-item">' + msgHashtag + '</li>';
+          var msgEmoji = $(msgHtml).emoji();
+
+          $infoList.append(msgEmoji);
         }
 
         if (data.link) {
